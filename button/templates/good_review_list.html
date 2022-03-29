@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{%block content%}
+{% for review in reviews %}
+    <div class="review card">
+      <div class="card-header">
+        {{review.id}}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">User: {{review.user}}</li>
+        <li class="list-group-item">{{review.text}}</li>
+        <li class="list-group-item">Good: {{review.good}}</li>
+      </ul>
+    </div>
+{% endfor %}
+{% endblock %}

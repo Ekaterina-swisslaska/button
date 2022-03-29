@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="review card">
+  <div class="card-header">
+    {{good.id}}
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name: {{good.name}}</li>
+    <li class="list-group-item">Description: {{good.description}}</li>
+    <li class="list-group-item">Pages number: {{good.pages_number}}</li>
+    <li class="list-group-item">
+            <a class="btn btn-dark" href="{% url 'good_review_list' good_id=good.id%}" role="button">Reviews</a>
+            {% if user.is_authenticated %}
+                <a class="btn btn-dark" href="{% url 'add_review' good_id=good.id%}">Add review</a>
+                {% if user.is_superuser %}
+                    <a class="btn btn-dark" href="{% url 'edit_good' good_id=good.id%}" role="button">Edit good</a>
+                {% endif %}
+            {% endif %}
+    </li>
+  </ul>
+</div>
+{% endblock %}

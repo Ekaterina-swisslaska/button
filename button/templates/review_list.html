@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{%block content%}
+{% for review in reviews %}
+    <div class="review card">
+      <div class="card-header">
+        {{review.id}}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">User: {{review.user}}</li>
+        <li class="list-group-item">Text: {{review.text}}</li>
+        <li class="list-group-item">Good: {{review.good}}</li>
+          <li class="list-group-item">
+              <a class="btn btn-dark" href="{% url 'good_review_list' good_id=review.good.id%}" role="button">Reviews</a>
+              {% if user.is_authenticated %}
+                {% if review.user == user %}
+                    <a class="btn btn-dark" href="{% url 'delete_review' review_id=review.id%}">Delete review</a>
+                    <a class="btn btn-dark" href="{% url 'edit_review' review_id=review.id%}">Edit review</a>
+                {% endif %}
+              {% endif %}
+          </li>
+      </ul>
+    </div>
+{% endfor %}
+{% endblock %}
